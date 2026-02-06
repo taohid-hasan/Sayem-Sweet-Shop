@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sayem Mistanno Bhander</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf5f7;
+      --card: #ffffff;
+      --accent: #d97706;
+      --muted: #6b7280;
+      --glass: rgba(255, 255, 255, 0.6);
+      --radius: 16px;
+      --shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      color: #0f172a
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px;
+      background: transparent
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #fb923c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: var(--shadow)
+    }
+
+    nav {
+      display: flex;
+      gap: 14px;
+      align-items: center
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600
+    }
+
+    .cta {
+      background: var(--accent);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.18)
+    }
+
+    .hero {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      padding: 36px;
+      border-radius: 20px;
+      margin: 18px;
+      backdrop-filter: blur(6px)
+    }
+
+    .hero-left {
+      max-width: 720px
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0 0 10px 0
+    }
+
+    p.lead {
+      color: var(--muted);
+      margin: 0 0 18px 0;
+      font-size: 16px
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      padding: 18px
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 10px
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .price {
+      font-weight: 800;
+      color: var(--accent)
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .btn {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700
+    }
+
+    .btn-order {
+      background: var(--accent);
+      color: white
+    }
+
+    .btn-cart {
+      background: #f3f4f6;
+      color: #0f172a
+    }
+
+    footer {
+      padding: 20px;
+      border-top: 1px solid #eee;
+      margin-top: 28px;
+      background: transparent
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 520px;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 18px
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px
+    }
+
+    /* Responsive */
+    @media (max-width:760px) {
+      h1 {
+        font-size: 28px
+      }
+
+      .hero {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
+
+    /* Small helpers */
+    .tag {
+      background: #fff7ed;
+      color: #92400e;
+      padding: 6px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+    Notes for you (how to customize):
+      - Replace the placeholder image URLs in each product card with your real photos.
+      - To enable real online ordering, connect the order form's JS `submitOrder()` to your backend endpoint (see comments in script).
+      - You can edit prices and descriptions directly in the HTML product blocks.
+  -->
+
+  <header>
+    <div class="brand">
+      <div class="logo">SM</div>
+      <div>
+        <div style="font-weight:800">Sayem Mistanno Bhander</div>
+        <div class="muted" style="font-size:13px">Premium traditional sweets — freshly made daily</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#products">Menu</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="cta" href="#" id="openOrderTop">Order Now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" style="margin:0 18px 12px 18px">
+      <div class="hero-left">
+        <div class="tag">Handmade • Fresh daily</div>
+        <h1>Sayem Mistanno Bhander — Authentic Bengali Sweets</h1>
+        <p class="lead">Home of melt-in-your-mouth rasgulla, soft pantua, syrupy chomchom, classic kalojam and crispy
+          jilapi. Order for pickup or local delivery.</p>
+        <div style="display:flex;gap:12px;margin-top:14px">
+          <a class="cta" href="#products" style="display:inline-block">See Menu</a>
+          <a class="btn btn-cart" id="openOrderHero">Place Order</a>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;justify-content:center">
+        <div style="width:320px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)">
+          <img src="sayem.png" alt="shop" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <h2 style="padding:0 24px;margin:8px 0">Our Sweets</h2>
+      <div class="shop-grid" id="productGrid">
+
+        <!-- Product: Chomchom -->
+        <div class="card" data-slug="chomchom">
+          <img src="chomchomm.png" alt="Chomchom">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-weight:800">Chomchom</div>
+                <div class="muted">Silky, creamy sweet — often rolled in coconut or pistachio</div>
+              </div>
+              <div class="price">340TK / 1KG</div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn btn-cart" onclick="addToCart('Chomchom')">Add to cart</button>
+              <button class="btn btn-order" onclick="openOrderWith('Chomchom')">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product: Kalojam -->
+        <div class="card" data-slug="kalojam">
+          <img src="kalojamm.jpg" alt="Kalojam">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-weight:800">Kalojam</div>
+                <div class="muted">Rich, dark syruped sweet with a caramelized crust</div>
+              </div>
+              <div class="price">340TK / 1KG</div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn btn-cart" onclick="addToCart('Kalojam')">Add to cart</button>
+              <button class="btn btn-order" onclick="openOrderWith('Kalojam')">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product: Jilapi -->
+        <div class="card" data-slug="jilapi">
+          <img src="jilapii.jpg" alt="Jilapi">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-weight:800">Jilapi</div>
+                <div class="muted">Crunchy & syrupy spirals — best served fresh and hot</div>
+              </div>
+              <div class="price">180TK / 1KG</div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn btn-cart" onclick="addToCart('Jilapi')">Add to cart</button>
+              <button class="btn btn-order" onclick="openOrderWith('Jilapi')">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product: Rasgulla -->
+        <div class="card" data-slug="rasgulla">
+          <img src="rosogullaa.jpg" alt="Rasgulla">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-weight:800">Rasgulla</div>
+                <div class="muted">Soft cottage-cheese balls soaked in light sugar syrup</div>
+              </div>
+              <div class="price">260TK / 1KG</div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn btn-cart" onclick="addToCart('Rasgulla')">Add to cart</button>
+              <button class="btn btn-order" onclick="openOrderWith('Rasgulla')">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product: Pantua -->
+        <div class="card" data-slug="pantua">
+          <img src="pantuaa.png" alt="Pantua">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-weight:800">Pantua</div>
+                <div class="muted">Fried chenna dumplings soaked in thick syrup — rich & fragrant</div>
+              </div>
+              <div class="price">300TK / 1KG</div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn btn-cart" onclick="addToCart('Pantua')">Add to cart</button>
+              <button class="btn btn-order" onclick="openOrderWith('Pantua')">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product: Doii -->
+        <div class="card" data-slug="doii">
+          <img src="doii.png" alt="doii">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-weight:800">Doii</div>
+                <div class="muted">Fried chenna dumplings soaked in thick syrup — rich & fragrant</div>
+              </div>
+              <div class="price">300TK / 1KG</div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn btn-cart" onclick="addToCart('Doii')">Add to cart</button>
+              <button class="btn btn-order" onclick="openOrderWith('Doii')">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product: Bundi -->
+        <div class="card" data-slug="bundi">
+          <img src="bundi.png" alt="Bundi">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-weight:800">Bundi</div>
+                <div class="muted">Fried chenna dumplings soaked in thick syrup — rich & fragrant</div>
+              </div>
+              <div class="price">200TK / 1KG</div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn btn-cart" onclick="addToCart('Bundi')">Add to cart</button>
+              <button class="btn btn-order" onclick="openOrderWith('Bundi')">Order</button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+    <section id="about" style="padding:18px">
+      <h3>About Sayem Mistanno Bhander</h3>
+      <p class="muted">We are a family-run sweet shop specializing in traditional Bengali sweets made fresh every
+        morning. We use high-quality ingredients and follow age-old recipes passed down through generations.</p>
+    </section>
+
+    <section id="contact" style="padding:18px">
+      <h3>Contact & Location</h3>
+      <p class="muted">Sayem Mistanno Bhander<br>Phone: +880 1991853356 (replace with real number)<br>Address: Thana
+        Road,Meherpur</p>
+    </section>
+  </main>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div class="muted">© Sayem Mistanno Bhander — Fresh sweets daily</div>
+      <div class="muted">Made with ❤️</div>
+    </div>
+  </footer>
+
+  <!-- Modal (order) -->
+  <div class="modal-backdrop" id="modal">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3 id="modalTitle">Place your order</h3>
+      <form id="orderForm" onsubmit="submitOrder(event)">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+          <label>
+            Full name
+            <input required id="custName" name="name" placeholder="Your name"
+              style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6">
+          </label>
+          <label>
+            Phone number
+            <input required id="custPhone" name="phone" placeholder="01XXX-XXXXXX"
+              style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6">
+          </label>
+          <label>
+            Item
+            <select id="custItem" name="item"
+              style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6">
+              <option>Rasgulla</option>
+              <option>Pantua</option>
+              <option>Chomchom</option>
+              <option>Kalojam</option>
+              <option>Jilapi</option>
+              <option>Doii</option>
+              <option>Bundi</option>
+            </select>
+          </label>
+          <div style="display:flex;gap:10px">
+            <label style="flex:1">
+              Quantity
+              <input type="number" id="custQty" name="qty" value="1" min="1"
+                style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6">
+            </label>
+            <label style="flex:1">
+              Pickup / Delivery
+              <select id="custType" name="type"
+                style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6">
+                <option>Pickup</option>
+                <option>Delivery</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            Notes (optional)
+            <input id="custNotes" name="notes" placeholder="e.g. Ready by 6pm"
+              style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6">
+          </label>
+
+          <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:6px">
+            <button type="button" onclick="closeModal()" style="padding:10px 14px;border-radius:10px">Cancel</button>
+            <button class="btn btn-order" type="submit">Send Order</button>
+          </div>
+        </div>
+      </form>
+      <div id="orderResult"
+        style="display:none;margin-top:12px;padding:10px;border-radius:10px;background:#f0fdf4;color:#065f46;font-weight:700">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple UI interactions. This is a frontend-only demo.
+    const modal = document.getElementById('modal');
+    const orderForm = document.getElementById('orderForm');
+    const orderResult = document.getElementById('orderResult');
+    const modalTitle = document.getElementById('modalTitle');
+
+    document.getElementById('openOrderTop').addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+    document.getElementById('openOrderHero').addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+
+    function openModal() { modal.style.display = 'flex'; orderResult.style.display = 'none'; }
+    function closeModal() { modal.style.display = 'none'; }
+
+    function openOrderWith(item) {
+      document.getElementById('custItem').value = item;
+      modalTitle.textContent = `Order: ${item}`;
+      openModal();
+    }
+
+    function addToCart(item) {
+      alert(item + ' added to cart (demo). Use Order button to place an order.');
+    }
+
+    function submitOrder(e) {
+      e.preventDefault();
+      const data = {
+        name: orderForm.name.value,
+        phone: orderForm.phone.value,
+        item: orderForm.item.value,
+        qty: orderForm.qty.value,
+        type: orderForm.type.value,
+        notes: orderForm.notes.value
+      };
+
+      // Frontend demo: show success message.
+      orderResult.style.display = 'block';
+      orderResult.textContent = `Thanks ${data.name}! Your order for ${data.qty} x ${data.item} has been received.`;
+
+      // Clear or keep form as you prefer. Here we reset quantity.
+      orderForm.qty.value = 1;
+
+      // TODO: To enable real orders -> send `data` to your server using fetch():
+      // fetch('/api/orders', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)})
+      //   .then(r=>r.json()).then(resp=>{ /* handle server response */ })
+
+      // For now close automatically after 3s
+      setTimeout(() => { closeModal(); }, 2500);
+    }
+
+    // close modal when clicking outside
+    modal.addEventListener('click', (ev) => { if (ev.target === modal) closeModal(); });
+  </script>
+</body>
+
+</html>
